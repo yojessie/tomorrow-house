@@ -21,5 +21,8 @@
   "homepage": "https://github.com/yojessie/tomorrow-house#readme",
   "dependencies": {
     "node-sass": "^6.0.1"
+  },
+  "devDependencies": {
+    "sass-lint": "^1.13.1"
   }
 }
