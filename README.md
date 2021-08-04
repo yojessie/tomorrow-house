@@ -80,3 +80,27 @@
   </button>
 </div>
 ```
+
+### 2. Sidebar
+
+- 로그인을 하지 않은 경우
+
+```html
+<div class="sidebar-auth">
+  <a class="btn-outlined btn-40" href="/">로그인</a>
+  <a class="btn-primary btn-40" href="/">회원가입</a>
+</div>
+```
+
+- 로그인 했을 경우
+
+```html
+<div class="sidebar-user">
+  <a href="/">
+    <div class="avatar-24">
+      <img src="./assets/images/img-user-01.jpg" alt="user-image" />
+    </div>
+    <strong class="username">닉네임이긴경우테스트입니다</strong>
+  </a>
+</div>
+```
