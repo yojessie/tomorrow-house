@@ -1,12 +1,12 @@
 .drawer-menu {
   $drawer-menu-item-height: 36px;
-  $drawer-menu-item-padding: 8px;
+  $drawer-menu-list-padding: 20px;
   $community-length: 8;
   $store-length: 9;
   $expert-length: 2;
 
   @function _calculate-max-content-height($length) {
-    @return $drawer-menu-item-height * $length + $drawer-menu-item-padding;
+    @return $drawer-menu-item-height * $length + $drawer-menu-list-padding;
   }
 
   &.is-active {
@@ -45,7 +45,7 @@
     // }
 
     .drawer-menu-list {
-      padding-bottom: $drawer-menu-item-padding;
+      padding-bottom: $drawer-menu-list-padding;
     }
   }
 
