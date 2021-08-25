@@ -1,26 +1,45 @@
 .lnb {
-  &-item {
-    a {
-      @include text-style(13, $dark);
-      @include inline-flexbox;
-      height: 40px;
-      padding: 0 8px;
-      font-weight: 700;
-    }
+  $lnb-link-padding: 8px;
+  $grid-margin: $sm-margin + $gutter / 2;
 
-    .ic-new {
-      color: $red;
-    }
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &-list {
+    @include inline-flexbox(start);
+    height: 40px;
+    padding: 0 #{$grid-margin - $lnb-link-padding};
+    margin-left: -#{$grid-margin};
+    white-space: nowrap;
+    // width: max-content; 호환성 이슈있음
+    border-bottom: 1px solid $border;
+  }
+
+  &-item {
+    // flex-shrink: 0; white-space 들어와서 필요 없어짐
 
     &.is-active {
       a {
         color: $blue;
-        border-bottom: 2px solid $blue;
+        border-bottom-color: $blue;
       }
+    }
+
+    a {
+      @include text-style(13, $dark);
+      @include inline-flexbox;
+      height: 40px;
+      padding: 0 $lnb-link-padding;
+      font-weight: 700;
+      border-bottom: 2px solid transparent;
     }
   }
 }
 
+// 처음 혼자 짰던 코드. 뭐가 문제였을까?
 // .lnb {
 //   overflow-x: scroll;
 //   white-space: nowrap;
