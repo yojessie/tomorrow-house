@@ -12,8 +12,8 @@ html {
 }
 
 body {
-  color: $primary;
   font-family: $font-main;
+  color: $primary;
 }
 
 h1 {
@@ -33,8 +33,8 @@ textarea {
   border: 0;
 
   &:focus {
-    box-shadow: none;
     outline: none;
+    box-shadow: none;
   }
 }
 
@@ -49,6 +49,10 @@ button {
 
 ul,
 ol {
-  list-style: none;
   padding-left: 0;
+  list-style: none;
+}
+
+address {
+  font-style: normal;
 }
