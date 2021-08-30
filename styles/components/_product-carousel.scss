@@ -1,17 +1,50 @@
 .product-carousel {
+  $grid-margin: 15px;
+
+  position: relative;
+
   &-slider {
-    img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
+    margin: 0 -#{$grid-margin};
   }
 
   &-thumbnail {
-    img {
-      display: block;
-      width: 100%;
-      height: auto;
+    .thumbnail {
+      &-list {
+        @include flexbox;
+        @include pos-center-x;
+        bottom: 16px;
+      }
+
+      &-item {
+        @include flexbox;
+        margin: 0 4px;
+
+        &.tns-nav-active {
+          button {
+            opacity: 1;
+            transform: scale(1.3333333333);
+          }
+        }
+
+        button {
+          width: 6px;
+          height: 6px;
+          background-color: $white;
+          border-radius: 50%;
+          opacity: 0.7;
+          transition: opacity 100ms ease-in-out, transform 100ms ease-in-out;
+        }
+
+        img {
+          display: none;
+        }
+      }
     }
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 }
