@@ -91,4 +91,68 @@
       }
     }
   }
+
+  @include responsive(D) {
+    @include flexbox(end, start);
+    flex-direction: row-reverse;
+
+    &-slider {
+      width: 500px;
+      height: 500px;
+    }
+
+    &-thumbnail {
+      margin-right: 8px;
+    }
+
+    .thumbnail-list {
+      flex-direction: column;
+    }
+
+    .thumbnail-item {
+      margin-right: 0;
+      margin-bottom: 8px;
+
+      button,
+      img {
+        width: 75px;
+        height: 75px;
+      }
+    }
+  }
+
+  //   아래는 혼자 먼저 작성해본 데스크탑 carousel
+  //   @include responsive(D) {
+  //     &-slider {
+  //       width: 500px;
+  //       height: 500px;
+  //       margin-bottom: 0;
+  //       margin-left: 75px + 8px;
+  //     }
+
+  //     &-thumbnail {
+  //       position: absolute;
+  //       top: 0;
+  //       left: 0;
+  //     }
+
+  //     .thumbnail-list {
+  //       align-items: flex-start;
+  //       flex-direction: column;
+  //     }
+
+  //     .thumbnail-item {
+  //       margin: 0 0 8px 0;
+
+  //       button {
+  //         width: 75px;
+  //         height: 75px;
+  //       }
+
+  //       img {
+  //         width: 75px;
+  //         height: 75px;
+  //       }
+  //     }
+  //   }
 }
