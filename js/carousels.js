@@ -13,9 +13,12 @@ const productCarousel = tns({
 
 const galleryCarousel = tns({
   container: '.user-gallery .slider-list',
-  controls: false,
   gutter: 4,
   edgePadding: 16,
+  controls: false,
+  controlsContainer: '.user-gallery-controls',
+  navContainer: '.user-gallery .thumbnail-list',
+  navAsThumbnails: true,
   loop: false,
   arrowKeys: true,
   mouseDrag: true,
