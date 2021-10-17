@@ -44,5 +44,25 @@
       padding-right: 8px;
       font-weight: 700;
     }
+
+    .avatar-32,
+    .username {
+      &:active {
+        opacity: 0.6;
+      }
+    }
+  }
+
+  @include responsive(D) {
+    &-detail {
+      .avatar-32,
+      .username {
+        transition: opacity 200ms ease-in-out;
+
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+    }
   }
 }
