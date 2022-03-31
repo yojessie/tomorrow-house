@@ -19,10 +19,10 @@
     "url": "https://github.com/yojessie/tomorrow-house/issues"
   },
   "homepage": "https://github.com/yojessie/tomorrow-house#readme",
-  "dependencies": {
-    "node-sass": "^6.0.1"
-  },
   "devDependencies": {
     "sass-lint": "^1.13.1"
+  },
+  "dependencies": {
+    "node-sass": "^7.0.1"
   }
 }
