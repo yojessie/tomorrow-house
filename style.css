@@ -2749,7 +2749,7 @@ i {
     width: 100%; }
     .cart-modal .button-group a,
     .cart-modal .button-group button {
-      width: 100px; }
+      width: 100%; }
     .cart-modal .button-group a {
       margin-bottom: 8px; }
   @media screen and (min-width: 1200px) {
