@@ -33,3 +33,38 @@ productTabButtonList.forEach((button) => {
   button.addEventListener('click', activateTab)
   button.addEventListener('click', scrollToTabPannel)
 })
+
+// 요소의 y축 위치 = window.scrollY + element.getBoundingClientRect().top
+const productTabPanelIdList = [
+  'product-spec',
+  'product-review',
+  'product-inquiry',
+  'product-shipment',
+  'product-recomendation',
+  // 확인해야 할 각 패널이 가지고 있는 ID를 미리 리스트로 선언
+]
+
+const productTabPanelList = productTabPanelIdList.map(function (panelId) {
+  const tabPanel = document.querySelector(`#${panelId}`)
+  return tabPanel
+})
+
+const productTabPanelPositionMap = {}
+
+function detectTabPanelPosition() {
+  // 각각의 tabPanel의 y축 위치를 찾아서 productTabPanelPositionMap 객체에 값을 업데이트
+
+  productTabPanelList.forEach(function (panel) {
+    const id = panel.getAttribute('id')
+    const position = window.scrollY + panel.getBoundingClientRect().top
+
+    productTabPanelPositionMap[id] = position
+    // 만들어 놓은 객체 보관함?에 id를 속성으로 하고 position을 값으로 가진 항목들을 업데이트
+  })
+}
+
+window.addEventListener('load', detectTabPanelPosition)
+window.addEventListener('resize', detectTabPanelPosition)
+// load : 페이지 내 모든 요소가 완전히 랜더 되었을때 이벤트 발생
+// 모든 요소가 로드 되어야 정확한 위치를 파악할 수 있기 때문
+// 창의 사이즈가 바뀌었을때도 위치값을 새로 업데이트 해주어야 함
