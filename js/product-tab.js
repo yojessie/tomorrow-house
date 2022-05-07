@@ -78,7 +78,7 @@ function detectTabPanelPosition() {
 }
 
 window.addEventListener('load', detectTabPanelPosition)
-window.addEventListener('resize', detectTabPanelPosition)
+window.addEventListener('resize', _.throttle(detectTabPanelPosition, 1000))
 // load : 페이지 내 모든 요소가 완전히 랜더 되었을때 이벤트 발생
 // 모든 요소가 로드 되어야 정확한 위치를 파악할 수 있기 때문
 // 창의 사이즈가 바뀌었을때도 위치값을 새로 업데이트 해주기 위해 resize 이벤트 추가
@@ -134,4 +134,4 @@ function updateActiveTabOnScroll() {
   }
 }
 
-window.addEventListener('scroll', updateActiveTabOnScroll)
+window.addEventListener('scroll', _.throttle(updateActiveTabOnScroll, 300))
