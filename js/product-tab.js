@@ -6,11 +6,21 @@ const TOP_HEADER_MOBILE = 50 + 40 + 40
 
 let currentActiveTab = productTab.querySelector('.is-active')
 
+// 탭 직접 클릭 이동 시, 중간에 다른 탭의 액티브를 거쳐가는 ux 개선
+let disableUpdating = false
+
 function activateTab() {
   const tabItem = this.parentNode
+
+  disableUpdating = true
   currentActiveTab.classList.remove('is-active')
   currentActiveTab = tabItem
   tabItem.classList.add('is-active')
+
+  // 탭 클릭 후 영역 이동 다 하고 난 다음에는 다시 updateActiveTabOnScroll 함수가 다시 실행되어야 하니까
+  setTimeout(function () {
+    disableUpdating = false
+  }, 1000)
 }
 
 // 탭 메뉴 클릭 시 해당 영역으로 이동
@@ -61,6 +71,9 @@ function detectTabPanelPosition() {
 
     productTabPanelPositionMap[id] = position
     // 만들어 놓은 객체 보관함에 id를 속성으로 하고 position을 값으로 가진 항목들을 업데이트
+
+    updateActiveTabOnScroll()
+    // 페이지가 로드되었을때 스크롤 위치에 따라 탭 패널이 액티브 되도록 개선
   })
 }
 
@@ -72,6 +85,10 @@ window.addEventListener('resize', detectTabPanelPosition)
 
 // 위에서 정리한 y축 값을 탭 액티브 이벤트에 활용
 function updateActiveTabOnScroll() {
+  if (disableUpdating) {
+    return
+  }
+
   const SECTION_BOTTOM_DESKTOP = 80
   const SECTION_BOTTOM_MOBILE = 20 + 8
   const scrolledAmount =
@@ -94,13 +111,24 @@ function updateActiveTabOnScroll() {
     newActiveTab = productTabButtonList[0] // 상품정보 탭 버튼
   }
 
+  // 추천 탭 버튼이 충분한 높이를 가지지 못해도 페이지 가장 하단에서 탭 활성화 되도록 디버깅
+  // 태블릿에서는 하단에 orderCta때문에 margin-bottom: 56px이 있어서 제대로 동작하지 않으므로 추가 대응
+  const bodyHeight =
+    document.body.offsetHeight + (window.innerWidth < 1200 ? 56 : 0)
+  if (window.scrollY + window.innerHeight == bodyHeight) {
+    newActiveTab = productTabButtonList[4]
+  }
+
   // 찾은 내용에 따라 탭 버튼을 active 시키기
   if (newActiveTab) {
     newActiveTab = newActiveTab.parentNode
 
     if (newActiveTab !== currentActiveTab) {
       newActiveTab.classList.add('is-active')
-      currentActiveTab.classList.remove('is-active')
+      if (currentActiveTab !== null) {
+        currentActiveTab.classList.remove('is-active')
+        // html파일에서 기본적으로 넣어놓은 is-active 클래스를 삭제했으므로, 초기 curruntActiveTab이 null이 되어버리는 이슈 해결
+      }
       currentActiveTab = newActiveTab
     }
   }
